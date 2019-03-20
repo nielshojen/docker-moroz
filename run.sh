@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo ">>> Starting Moroz Server <<<"
+
 execServe="/usr/bin/moroz"
 
 if [[ ${CONFIGS_DIR} ]]; then
