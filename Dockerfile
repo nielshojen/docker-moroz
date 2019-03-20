@@ -14,6 +14,8 @@ RUN apk --no-cache add curl ca-certificates && \
     apk del curl && \
     chmod a+x /run.sh
 
+VOLUME ["/configs","/certs","/logs"]
+
 EXPOSE 8080
 
 CMD ["/run.sh"]
