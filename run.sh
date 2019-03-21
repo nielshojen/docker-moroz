@@ -1,6 +1,8 @@
 #!/bin/sh
 
 echo ">>> Starting Moroz Server <<<"
+echo "Server Cert: ${TLS_CERT}"
+echo "Server Key: ${TLS_KEY}"
 
 execServe="/usr/bin/moroz"
 
@@ -17,7 +19,6 @@ else
 fi
 
 if [[ ${TLS_CERT} ]]; then
-    echo "${TLS_CERT}"
     echo "${TLS_CERT}" > /certs/server.crt
     execServe="${execServe} -tls-cert ${TLS_CERT}"
 else
