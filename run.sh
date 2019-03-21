@@ -17,7 +17,8 @@ else
 fi
 
 if [[ ${TLS_CERT} ]]; then
-    echo ${TLS_CERT} > /certs/server.crt
+    echo "${TLS_CERT}"
+    echo "${TLS_CERT}" > /certs/server.crt
     execServe="${execServe} -tls-cert ${TLS_CERT}"
 else
     if [[ -f "/certs/server.crt" ]]; then
@@ -26,10 +27,11 @@ else
 fi
 
 if [[ ${TLS_KEY} ]]; then
-    echo ${TLS_KEY} > /certs/server.key
+    echo "${TLS_KEY}"
+    echo "${TLS_KEY}" > /certs/server.key
     execServe="${execServe} -tls-key ${TLS_KEY}"
 else
-    if [[ -f "/certs/server.crt" ]]; then
+    if [[ -f "/certs/server.key" ]]; then
         execServe="${execServe} -tls-key /certs/server.key"
     fi
 fi
