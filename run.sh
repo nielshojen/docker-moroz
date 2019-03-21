@@ -19,7 +19,7 @@ fi
 if [[ ! -z "${TLS_CERT}" ]]; then
     echo "TLS_CERT Set"
     echo "${TLS_CERT}" > /certs/server.crt
-    execServe="${execServe} -tls-cert ${TLS_CERT}"
+    execServe="${execServe} -tls-cert /certs/server.crt"
 else
     if [[ -f "/certs/server.crt" ]]; then
         execServe="${execServe} -tls-cert /certs/server.crt"
@@ -29,7 +29,7 @@ fi
 if [[ ! -z "${TLS_KEY}" ]]; then
     echo "TLS_KEY Set"
     echo "${TLS_KEY}" > /certs/server.key
-    execServe="${execServe} -tls-key ${TLS_KEY}"
+    execServe="${execServe} -tls-key /certs/server.key"
 else
     if [[ -f "/certs/server.key" ]]; then
         execServe="${execServe} -tls-key /certs/server.key"
