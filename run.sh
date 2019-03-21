@@ -1,24 +1,23 @@
 #!/bin/sh
 
 echo ">>> Starting Moroz Server <<<"
-echo "Server Cert: ${TLS_CERT}"
-echo "Server Key: ${TLS_KEY}"
 
 execServe="/usr/bin/moroz"
 
-if [[ ${CONFIGS_DIR} ]]; then
+if [[ -n ${CONFIGS_DIR} ]]; then
     execServe="${execServe} -configs ${CONFIGS_DIR}"
 else
     execServe="${execServe} -configs /configs"
 fi
 
-if [[ ${EVENT_LOGFILE} ]]; then
+if [[ -n ${EVENT_LOGFILE} ]]; then
     execServe="${execServe} -event-logfile ${EVENT_LOGFILE}"
 else
     execServe="${execServe} -event-logfile /logs/events"
 fi
 
-if [[ ${TLS_CERT} ]]; then
+if [[ -n ${TLS_CERT} ]]; then
+    echo "TLS_CERT Set"
     echo "${TLS_CERT}" > /certs/server.crt
     execServe="${execServe} -tls-cert ${TLS_CERT}"
 else
@@ -27,8 +26,8 @@ else
     fi
 fi
 
-if [[ ${TLS_KEY} ]]; then
-    echo "${TLS_KEY}"
+if [[ -n ${TLS_KEY} ]]; then
+    echo "TLS_KEY Set"
     echo "${TLS_KEY}" > /certs/server.key
     execServe="${execServe} -tls-key ${TLS_KEY}"
 else
@@ -37,7 +36,7 @@ else
     fi
 fi
 
-if [[ ${HTTP_ADDR} ]]; then
+if [[ -n ${HTTP_ADDR} ]]; then
     execServe="${execServe} -http-addr=${HTTP_ADDR}"
 else
     execServe="${execServe} -http-addr=:8080"
