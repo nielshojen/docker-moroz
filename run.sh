@@ -47,6 +47,11 @@ else
     execServe="${execServe} -http-addr=:8080"
 fi
 
+if [[ ! -z "${HTTP_DEBUG}" ]]; then
+    echo "http-debug set in env"
+    execServe="${execServe} -http-debug"
+fi
+
 echo "Starting using: $execServe"
 
 eval $execServe
