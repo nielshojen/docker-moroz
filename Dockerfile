@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-ENV MOROZ_VERSION=1.0.1
+ENV MOROZ_VERSION=2.0.1
 
 COPY run.sh /run.sh
 
