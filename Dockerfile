@@ -4,15 +4,15 @@ ENV MOROZ_VERSION=2.0.1
 
 COPY run.sh /run.sh
 
-RUN apk --no-cache add curl ca-certificates && \
-    curl -L https://github.com/groob/moroz/releases/download/${MOROZ_VERSION}/moroz-${MOROZ_VERSION}.zip -o /moroz.zip && \
-    unzip /moroz.zip && \
-    mv /build/moroz-linux-amd64 /usr/bin/moroz && \
-    rm -r /build && \
-    rm -r /moroz.zip && \
-    chmod a+x /usr/bin/moroz && \
-    apk del curl && \
-    chmod a+x /run.sh
+RUN apk --no-cache add curl ca-certificates
+RUN curl -L https://github.com/groob/moroz/releases/download/${MOROZ_VERSION}/moroz_${MOROZ_VERSION}.zip -o /moroz.zip
+RUN unzip /moroz.zip
+RUN mv /build/linux/moroz /usr/bin/moroz
+RUN rm -r /build
+RUN rm -r /moroz.zip
+RUN chmod a+x /usr/bin/moroz
+RUN apk del curl
+RUN chmod a+x /run.sh
 
 VOLUME ["/configs","/certs","/logs"]
 

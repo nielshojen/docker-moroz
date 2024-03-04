@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo ">>> Starting Moroz Server <<<"
-
 execServe="/usr/bin/moroz"
 
 if [[ ! -z "${CONFIGS_DIR}" ]]; then
@@ -50,6 +48,13 @@ fi
 if [[ ! -z "${HTTP_DEBUG}" ]]; then
     echo "http-debug set in env"
     execServe="${execServe} -http-debug"
+fi
+
+
+if [[ ${USE_TLS} = "false" ]]; then
+    execServe="${execServe} -http-addr=${HTTP_ADDR}"
+else
+    execServe="${execServe} -use-tls false"
 fi
 
 echo "Starting using: $execServe"
