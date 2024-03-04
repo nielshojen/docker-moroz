@@ -2,41 +2,54 @@
 
 execServe="/usr/bin/moroz"
 
-if [[ ${CONFIGS_DIR} ]]; then
+if [[ ! -z "${CONFIGS_DIR}" ]]; then
+    echo "configs dir set in CONFIGS_DIR"
     execServe="${execServe} -configs ${CONFIGS_DIR}"
 else
     execServe="${execServe} -configs /configs"
 fi
 
-if [[ ${EVENT_LOGFILE} ]]; then
+if [[ ! -z "${EVENT_LOGFILE}" ]]; then
+    echo "event-logfile set in env"
     execServe="${execServe} -event-logfile ${EVENT_LOGFILE}"
 else
     execServe="${execServe} -event-logfile /logs/events"
 fi
 
-if [[ ${TLS_CERT} ]]; then
-    echo ${TLS_CERT} > /certs/server.crt
-    execServe="${execServe} -tls-cert ${TLS_CERT}"
+if [[ ! -z "${TLS_CERT}" ]]; then
+    echo "tls-cert set in env"
+    echo "${TLS_CERT}" > /certs/server.crt
+    execServe="${execServe} -tls-cert /certs/server.crt"
 else
     if [[ -f "/certs/server.crt" ]]; then
+        echo "using tls-cert found at /certs/server.crt"
         execServe="${execServe} -tls-cert /certs/server.crt"
     fi
 fi
 
-if [[ ${TLS_KEY} ]]; then
-    echo ${TLS_KEY} > /certs/server.key
-    execServe="${execServe} -tls-key ${TLS_KEY}"
+if [[ ! -z "${TLS_KEY}" ]]; then
+    echo "tls-key set in env"
+    echo "${TLS_KEY}" > /certs/server.key
+    execServe="${execServe} -tls-key /certs/server.key"
 else
-    if [[ -f "/certs/server.crt" ]]; then
+    if [[ -f "/certs/server.key" ]]; then
+        echo "using tls-key found at /certs/server.key"
         execServe="${execServe} -tls-key /certs/server.key"
     fi
 fi
 
-if [[ ${HTTP_ADDR} ]]; then
+if [[ ! -z "${HTTP_ADDR}" ]]; then
+    echo "http-addr set in env"
     execServe="${execServe} -http-addr=${HTTP_ADDR}"
 else
     execServe="${execServe} -http-addr=:8080"
 fi
+
+if [[ ! -z "${HTTP_DEBUG}" ]]; then
+    echo "http-debug set in env"
+    execServe="${execServe} -http-debug"
+fi
+
 
 if [[ ${USE_TLS} = "false" ]]; then
     execServe="${execServe} -http-addr=${HTTP_ADDR}"

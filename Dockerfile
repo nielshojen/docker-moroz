@@ -14,6 +14,8 @@ RUN chmod a+x /usr/bin/moroz
 RUN apk del curl
 RUN chmod a+x /run.sh
 
+VOLUME ["/configs","/certs","/logs"]
+
 EXPOSE 8080
 
 CMD ["/run.sh"]
