@@ -38,6 +38,12 @@ else
     execServe="${execServe} -http-addr=:8080"
 fi
 
+if [[ ${USE_TLS} = "false" ]]; then
+    execServe="${execServe} -http-addr=${HTTP_ADDR}"
+else
+    execServe="${execServe} -use-tls false"
+fi
+
 echo "Starting using: $execServe"
 
 eval $execServe
