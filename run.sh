@@ -39,8 +39,6 @@ else
 fi
 
 if [[ ${USE_TLS} = "false" ]]; then
-    execServe="${execServe} -http-addr=${HTTP_ADDR}"
-else
     execServe="${execServe} -use-tls false"
 fi
 
