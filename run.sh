@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 execServe="/usr/bin/moroz"
 
@@ -53,7 +53,7 @@ fi
 
 if [[ ${USE_TLS} = "false" ]]; then
     echo "use-tls set to false in env"
-    execServe="${execServe} -use-tls false"
+    execServe="${execServe} -use-tls=false"
 fi
 
 echo "Starting using: $execServe"
