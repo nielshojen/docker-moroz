@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 execServe="/usr/bin/moroz"
 
