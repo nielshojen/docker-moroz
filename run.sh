@@ -52,8 +52,7 @@ fi
 
 
 if [[ ${USE_TLS} = "false" ]]; then
-    execServe="${execServe} -http-addr=${HTTP_ADDR}"
-else
+    echo "use-tls set to false in env"
     execServe="${execServe} -use-tls false"
 fi
 
