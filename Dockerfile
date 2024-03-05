@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM --platform=linux/amd64 alpine
 
 ENV MOROZ_VERSION=2.0.1
 

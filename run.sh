@@ -9,11 +9,11 @@ else
     execServe="${execServe} -configs /configs"
 fi
 
-if [[ ! -z "${EVENT_LOGFILE}" ]]; then
-    echo "event-logfile set in env"
-    execServe="${execServe} -event-logfile ${EVENT_LOGFILE}"
+if [[ ! -z "${EVENT_DIR}" ]]; then
+    echo "event-dir set in env"
+    execServe="${execServe} -event-dir ${EVENT_DIR}"
 else
-    execServe="${execServe} -event-logfile /logs/events"
+    execServe="${execServe} -event-dir /logs/events"
 fi
 
 if [[ ! -z "${TLS_CERT}" ]]; then
@@ -45,15 +45,15 @@ else
     execServe="${execServe} -http-addr=:8080"
 fi
 
-if [[ ! -z "${HTTP_DEBUG}" ]]; then
+if [[ ! -z "${DEBUG}" ]]; then
     echo "http-debug set in env"
-    execServe="${execServe} -http-debug"
+    execServe="${execServe} -debug"
 fi
 
 
 if [[ ${USE_TLS} = "false" ]]; then
     echo "use-tls set to false in env"
-    execServe="${execServe} -use-tls false"
+    execServe="${execServe} -use-tls=false"
 fi
 
 echo "Starting using: $execServe"
