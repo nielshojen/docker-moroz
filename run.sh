@@ -9,9 +9,9 @@ else
     execServe="${execServe} -configs /configs"
 fi
 
-if [[ ! -z "${EVENT_LOGFILE}" ]]; then
+if [[ ! -z "${EVENT_DIR}" ]]; then
     echo "event-logfile set in env"
-    execServe="${execServe} -event-logfile ${EVENT_LOGFILE}"
+    execServe="${execServe} -event-dir ${EVENT_DIR}"
 else
     execServe="${execServe} -event-logfile /logs/events"
 fi
@@ -45,9 +45,9 @@ else
     execServe="${execServe} -http-addr=:8080"
 fi
 
-if [[ ! -z "${HTTP_DEBUG}" ]]; then
+if [[ ! -z "${DEBUG}" ]]; then
     echo "http-debug set in env"
-    execServe="${execServe} -http-debug"
+    execServe="${execServe} -debug"
 fi
 
 
