@@ -10,10 +10,10 @@ else
 fi
 
 if [[ ! -z "${EVENT_DIR}" ]]; then
-    echo "event-logfile set in env"
+    echo "event-dir set in env"
     execServe="${execServe} -event-dir ${EVENT_DIR}"
 else
-    execServe="${execServe} -event-logfile /logs/events"
+    execServe="${execServe} -event-dir /logs/events"
 fi
 
 if [[ ! -z "${TLS_CERT}" ]]; then
