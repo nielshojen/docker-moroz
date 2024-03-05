@@ -13,7 +13,7 @@ if [[ ! -z "${EVENT_DIR}" ]]; then
     echo "event-dir set in env"
     execServe="${execServe} -event-dir ${EVENT_DIR}"
 else
-    execServe="${execServe} -event-dir /logs/events"
+    execServe="${execServe} -event-dir /logs"
 fi
 
 if [[ ! -z "${TLS_CERT}" ]]; then
